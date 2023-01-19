@@ -997,7 +997,9 @@ paths:
       tags:
         - Metafields
       description: |
-        Create a cart `Metafield`.
+        Create a cart `Metafield`. 
+        
+        If you create an order from a Cart, you can continue referencing the Cart Metafields even if you delete the original Cart. Use the `cart_id` field on the Order to construct the Cart Metafield endpoint. 
       operationId: CreateCartMetafieldsByCartId
       parameters: []
       requestBody:
@@ -1105,9 +1107,8 @@ paths:
         required: true
       responses:
         '200':
-          description: |+
+          description: |
             A metafield and metadata.
-
           content:
             application/json:
               schema:
@@ -3295,17 +3296,17 @@ components:
           description: |
             The type of resource with which the metafield is associated.
           enum:
-            - order
             - brand
             - product
             - variant
             - category
-          example: order
+            - cart
+          example: cart
         resource_id:
-          type: integer
+          type: string
           description: |
             The unique identifier for the resource with which the metafield is associated.
-          example: 0
+          example: '0'
           readOnly: true
       required:
         - permission_set
